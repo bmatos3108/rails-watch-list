@@ -1,2 +1,15 @@
-<h1>Lists#show</h1>
-<p>Find me in app/views/lists/show.html.erb</p>
+<!-- app/views/lists/show.html.erb -->
+<h1><%= @list.name %></h1>
+
+<h2>Movies</h2>
+<ul>
+  <% @list.bookmarks.each do |bookmark| %>
+    <li>
+      <%= bookmark.movie.title %> - <%= bookmark.comment %>
+      <%= link_to 'Destroy', list_bookmark_path(@list, bookmark), method: :delete, data: { confirm: 'Are you sure?' } %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to 'Add Bookmark', new_list_bookmark_path(@list) %>
+<%= link_to 'Back', lists_path %>
